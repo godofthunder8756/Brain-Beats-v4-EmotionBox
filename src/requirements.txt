@@ -1,0 +1,5 @@
+pretty_midi
+numpy
+torch >= 0.4
+tensorboardX
+progress
