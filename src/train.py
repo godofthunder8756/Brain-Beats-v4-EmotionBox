@@ -13,7 +13,7 @@ import optparse
 
 import utils
 import config
-from torch.utils.data import Dataset
+from data import Dataset
 from model import PerformanceRNN
 from sequence import NoteSeq, EventSeq, ControlSeq
 
