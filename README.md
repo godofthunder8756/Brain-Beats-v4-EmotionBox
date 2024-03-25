@@ -1,19 +1,18 @@
 
-# EmotionBox: a music-element-driven emotional music generation system based on music psychology
+# Implementing EmotionBox to Brain Beats v4
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-PyTorch implementation of EmotionBox, the paper is available on 
+Based on the PyTorch implementation of EmotionBox, the paper is available on 
 [https://arxiv.org/abs/2112.08561](https://arxiv.org/abs/2112.08561).
 
-The codes contain the proposed method and label-based method.
+The code contains only the proposed method detailed in the paper.
 
 The trained models are in the .\save dir.
 
 ## Generated Samples
 
     Run the generate.py to generate music using EmotionBox.
-    Run the generate_label.py to generate music using label-based method.
 
 
 ## Training Instructions
@@ -34,7 +33,3 @@ The trained models are in the .\save dir.
 - pytorch >= 0.4
 - tensorboardX
 - progress
-
-## acknowledgement
-
-We thank for the codes of [Performance-RNN-PyTorch](https://github.com/djosix/Performance-RNN-PyTorch) from djosix.
