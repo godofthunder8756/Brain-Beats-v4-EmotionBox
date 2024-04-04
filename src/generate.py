@@ -11,8 +11,6 @@ from config import device, model_config as model_config
 from model import PerformanceRNN
 from sequence import EventSeq, Control, ControlSeq
 
-# pylint: disable=E1101,E1102
-
 
 # ========================================================================
 # Settings
@@ -40,7 +38,7 @@ def getopt():
     parser.add_option('-s', '--session',
                       dest='sess_path',
                       type='string',
-                      default='save/myModel3hour.sess',
+                      default="save/NEW.sess",
                       help='session file containing the trained model')
 
     parser.add_option('-o', '--output-dir',
@@ -90,7 +88,7 @@ output_dir=output_dir+'/'+time.strftime("%Y-%m-%d %H-%M-%S", time.localtime())
 sess_path = opt.sess_path
 batch_size = opt.batch_size
 max_len = opt.max_len
-# greedy_ratio = opt.greedy_ratio  调greedy可以避免一直重复
+# greedy_ratio = opt.greedy_ratio
 greedy_ratio = 0.8
 control = opt.control    #!!!!!!!!!!!!
 use_beam_search = opt.beam_size > 0
@@ -99,14 +97,19 @@ beam_size = opt.beam_size
 temperature = opt.temperature
 init_zero = opt.init_zero
 
+
 if use_beam_search:
     greedy_ratio = 'DISABLED'
 else:
     beam_size = 'DISABLED'
 
+print("File path:", sess_path)
+sess_path = os.path.abspath(sess_path)
+print("File path:", sess_path)
 assert os.path.isfile(sess_path), f'"{sess_path}" is not a file'
-# control_dict={'1,0,1,0,1,1,0,1,0,1,0,1':'C大调','3,0,1,0,1,3,0,3,0,1,0,1':'C大调','2,0,1,0,1,2,0,2,0,1,0,1':'C大调',
-#               '2,0,1,1,0,2,0,2,1,0,1,0':'C小调','3,0,1,1,0,3,0,3,1,0,1,0':'C小调','2,0,1,1,0,2,0,2,1,0,1,0':'C小调',}
+
+# control_dict={'1,0,1,0,1,1,0,1,0,1,0,1':'C major','3,0,1,0,1,3,0,3,0,1,0,1':'C major','2,0,1,0,1,2,0,2,0,1,0,1':'C major',
+#               '2,0,1,1,0,2,0,2,1,0,1,0':'C minor','3,0,1,1,0,3,0,3,1,0,1,0':'C minor','2,0,1,1,0,2,0,2,1,0,1,0':'C minor',}
 # controls=[';1',';2',';3',';4',';5',';6',';7',';8']
 controls=[]
 name_dict ={'3,0,1,0,1,2,0,2,0,1,0,1;1':'peaceful', '3,0,1,0,1,2,0,2,0,1,0,1;5':'happy',
